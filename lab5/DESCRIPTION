@@ -1,9 +1,13 @@
 Package: lab5
 Type: Package
-Title: What the Package Does (Short Line)
+Title: Lab5
 Version: 1.0
 Date: 2024-10-08
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line).
-License: What license is it under?
+Author: Björhag, Alexander; Lindner, Jakob
+Maintainer: <alebj452@student.liu.se>, <jakli758@student.liu.se>
+Description: Assignment for lab 4 in Advanced R programming. This package downloads data from the Kolada API
+License: GPL-3 + file LICENSE
+Depends: 
+    R (>= 3.5.0),
+    ggplot2,
+    methods
