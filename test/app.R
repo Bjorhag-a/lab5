@@ -26,6 +26,8 @@ ui <- fluidPage(
 
 server <- function(input, output){
   
+  
+  input$m_id
   output$plot <- renderPlot({
     ggplot(data, aes(x = gender, y = val )) + 
       geom_bar(stat = "identity", fill = "lightblue") +
@@ -53,6 +55,8 @@ ui <- fluidPage(
 
 
 server <- function(input, output){
+  
+  
   
   output$plot <- renderPlot({
     ggplot(data, aes(x = gender, y = val )) + 

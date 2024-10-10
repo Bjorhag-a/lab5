@@ -2,8 +2,10 @@ library(httr)
 library(jsonlite)
 
 get_data <- function(kpi, municipality, year){
+  
+  #TODO: check response code, if 200 or some error
   #TODO: check input
-  #TODO: Stockholm for example has two IDs
+  #TODO: Stockholm for example has two IDs, Sometimes no data is available for certain years
   
   # get municipality id
   m_id_res <- GET("http://api.kolada.se/v2/municipality", query=list(title=municipality))
@@ -22,6 +24,27 @@ get_data <- function(kpi, municipality, year){
 
 d<-get_data("N09890", "Helsingborg", 2019)
 d
+
+
+
+
+
+
+
+
+
+
+
+
+#TODO in shiny: don't fetch data too often, cache the data somehow
+
+
+
+
+
+
+
+
 
 
 library(shiny)
