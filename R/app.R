@@ -13,6 +13,8 @@ ui <- fluidPage(
   titlePanel("Kolada"),
   sidebarLayout(
     sidebarPanel(
+      #TODO: fetch municipalities automatically from https://api.kolada.se/v2/municipality
+      # --> write new function for that
       selectInput("m", "Select municipality", choices = c("Helsingborg", "Stockholm", "Lund")),
       selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
       selectInput("year", "Select year", choices = c(2018, 2019))
@@ -24,18 +26,21 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  #d <- reactive({data.frame(
-  #  gender = c("K", "M", "T"),
-  #  values = c(12.3, 14.6, 13.4)
-  #)})
   
   d <- reactive({get_data(input$kpi, input$m, input$year)})
+  
+  # TODO check if a dataframe was returned or an error
+  # print message to the user if error
+  
+  # TODO dont make to many repetitive API calls
+  # cache results
+  # maybe try memoise function
   
   output$plot <- renderPlot({
     ggplot(d(), aes(x = gender, y = value, fill=gender)) + 
       geom_bar(stat = "identity") +
       
-      # TODO: print name of KPI 
+      # TODO: print name of KPI --> Select one KPI group 
       labs(title = paste("Data for", input$m, "-", input$year, "-", input$kpi),
            x = "Gender", y = "Values") +
       theme_bw()

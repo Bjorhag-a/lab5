@@ -1,6 +1,10 @@
 library(httr)
 library(jsonlite)
 
+get_municipalities <- function(){
+  
+}
+
 get_data <- function(kpi, municipality, year){
   
   #TODO: check input
@@ -11,7 +15,7 @@ get_data <- function(kpi, municipality, year){
   # return error code, if API does not return 200
   m_id_res_status <- m_id_res$status
   if (m_id_res_status != 200){
-    return(paste("API call for municapility id failed with error code:", m_id_res_status))
+    return(m_id_res_status)
   } 
   
   m_id_data <- fromJSON(rawToChar(m_id_res$content))
@@ -28,7 +32,7 @@ get_data <- function(kpi, municipality, year){
   # return error code, if API does not return 200
   res_status <- m_id_res$status
   if (m_id_res_status != 200){
-    return(paste("API call for data failed with error code:", res_status))
+    return(res_status)
   } 
   data <- fromJSON(rawToChar(res$content))
   values <- data$values$values
