@@ -3,32 +3,64 @@ library(jsonlite)
 
 get_data <- function(kpi, municipality, year){
   
-  #TODO: check response code, if 200 or some error
   #TODO: check input
-  #TODO: Stockholm for example has two IDs, Sometimes no data is available for certain years
   
   # get municipality id
   m_id_res <- GET("http://api.kolada.se/v2/municipality", query=list(title=municipality))
+  
+  # return error code, if API does not return 200
+  m_id_res_status <- m_id_res$status
+  if (m_id_res_status != 200){
+    return(paste("API call for municapility id failed with error code:", m_id_res_status))
+  } 
+  
   m_id_data <- fromJSON(rawToChar(m_id_res$content))
-  m_id <- m_id_data$values$id
+  print(m_id_res_status)
+  # use paste for the case of multiple ids for a municipality
+  m_id <- paste(m_id_data$values$id, collapse = ",")
   print(m_id)
+  
+  
   
   # get requested data
   res <- GET(paste("http://api.kolada.se/v2/data/kpi/",kpi,"/municipality/",m_id,"/year/", year,sep = ""))
+  
+  # return error code, if API does not return 200
+  res_status <- m_id_res$status
+  if (m_id_res_status != 200){
+    return(paste("API call for data failed with error code:", res_status))
+  } 
   data <- fromJSON(rawToChar(res$content))
   values <- data$values$values
   
+  # return -1 if no data is available for the url parameters
+  if (is.null(values)) {
+    return (-1)
+  }
   
-  return(values)
+  # convert list to dataframe
+  df <- rbind.data.frame(values)
+  return(df)
 }
 
 d<-get_data("N09890", "Helsingborg", 2019)
-d
+do.call(rbind.data.frame, d)
+rbind.data.frame(d)
+class(d)
 
 
+kpi <- "N09890"
+year <- "2019"
+m_id <- c("0180")
+paste(m_id, collapse = ",")
+url <- paste("http://api.kolada.se/v2/data/kpi/",kpi,"/municipality/",paste(m_id, collapse = ","),"/year/", year,sep = "")
+url
+res <- GET(url)
 
+data <- fromJSON(rawToChar(res$content))
+values <- data$values$values
 
-
+values
 
 
 

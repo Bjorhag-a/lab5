@@ -8,106 +8,52 @@
 #
 
 library(shiny)
+library(ggplot2)
 ui <- fluidPage(
   titlePanel("Kolada"),
-  
-  sidebarPanel(
-    selectInput("m_id", "Select city", choices = ),
-    selectInput("kpi", "Select KPI", m_id),
-    selectInput("year", "Select year", year),
-    radioButtons("gender", "Select genders", gender)
-    
-  ),
-  mainPanel(
-    plotOutput("barplot")
-  )
-)
-
-
-server <- function(input, output){
-  
-  
-  input$m_id
-  output$plot <- renderPlot({
-    ggplot(data, aes(x = gender, y = val )) + 
-      geom_bar(stat = "identity", fill = "lightblue") +
-      theme_bw()
-  }, height = 400, width = 400)
-  
-}
-
-
-
-
-ui <- fluidPage(
-  titlePanel("Kolada"),
-  
-  sidebarPanel(
-    selectInput("m_id", "Select city", city),
-    selectInput("year", "Select year", year),
-    checkboxGroupInput("gender", "Select genders", gender)
-    
-  ),
-  mainPanel(
-    plotOutput("barplot")
-  )
-)
-
-
-server <- function(input, output){
-  
-  
-  
-  output$plot <- renderPlot({
-    ggplot(data, aes(x = gender, y = val )) + 
-      geom_bar(stat = "identity", fill = "lightblue") +
-      theme_bw()
-  }, height = 400, width = 400)
-  
-}
-    
-shinyApp(ui = ui, server = server)
-  
-
-
-
-# Define UI for application that draws a histogram
-ui <- fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-
-        # Show a plot of the generated distribution
-        mainPanel(
-           plotOutput("distPlot")
-        )
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("m", "Select municipality", choices = c("Helsingborg", "Stockholm", "Lund")),
+      selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
+      selectInput("year", "Select year", choices = c(2018, 2019))
+    ),
+    mainPanel(
+      plotOutput("plot")
     )
+  )
 )
 
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-
-    output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histogram of waiting times')
-    })
+server <- function(input, output){
+  #d <- reactive({data.frame(
+  #  gender = c("K", "M", "T"),
+  #  values = c(12.3, 14.6, 13.4)
+  #)})
+  
+  d <- reactive({get_data(input$kpi, input$m, input$year)})
+  
+  output$plot <- renderPlot({
+    ggplot(d(), aes(x = gender, y = value, fill=gender)) + 
+      geom_bar(stat = "identity") +
+      
+      # TODO: print name of KPI 
+      labs(title = paste("Data for", input$m, "-", input$year, "-", input$kpi),
+           x = "Gender", y = "Values") +
+      theme_bw()
+  })
 }
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
+
+
+
+
+
+
+
+
+
+
+
