@@ -6,6 +6,13 @@
 \usage{
 get_data(kpi, municipality, year)
 }
+\arguments{
+\item{kpi}{id of the kpi to fetch data for}
+
+\item{municipality}{name of the municipality to fetch data for}
+
+\item{year}{characters of the year to fetch data for}
+}
 \value{
 Will return a data frame with fetched data from API for given parameters
 }
@@ -13,6 +20,6 @@ Will return a data frame with fetched data from API for given parameters
 yuppy
 }
 \examples{
-get_data()
+get_data("N09890", "Helsingborg", "2019")
 
 }

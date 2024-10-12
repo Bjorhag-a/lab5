@@ -7,7 +7,7 @@
 #' 
 #' @returns Will return a data frame with fetched data from API for given parameters
 #'   
-#' @examples get_data("N09890", "Helsingborg", "2019")
+#' @examples get_data(kpi="N09890", municipality="Helsingborg", year="2019")
 #' 
 #' @import httr
 #' @import jsonlite
