@@ -1,11 +1,13 @@
 #' @title Get data 
 #' 
 #' @description yuppy
-#' 
+#' @param kpi id of the kpi to fetch data for
+#' @param municipality name of the municipality to fetch data for
+#' @param year characters of the year to fetch data for
 #' 
 #' @returns Will return a data frame with fetched data from API for given parameters
 #'   
-#' @examples get_data()
+#' @examples get_data("N09890", "Helsingborg", "2019")
 #' 
 #' @import httr
 #' @import jsonlite

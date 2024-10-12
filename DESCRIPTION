@@ -10,7 +10,7 @@ License: GPL-3 + file LICENSE
 Depends: 
     R (>= 3.5.0),
     ggplot2,
-    methods,
+    
     jsonlite,
     httr,
     shiny

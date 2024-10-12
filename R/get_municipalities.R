@@ -28,5 +28,3 @@ get_municipalities <- function(){
   subset <- subset(df, values.type=="K")
   return (subset$values.title)
 }
-
-length(get_municipalities())
