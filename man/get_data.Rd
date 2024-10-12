@@ -20,6 +20,6 @@ Will return a data frame with fetched data from API for given parameters
 yuppy
 }
 \examples{
-get_data("N09890", "Helsingborg", "2019")
+get_data(kpi="N09890", municipality="Helsingborg", year="2019")
 
 }

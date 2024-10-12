@@ -1,16 +1,18 @@
-#' @title App 
+#' @title run_app 
 #' 
 #' @description yuppy
-#'   
-#' @examples shinyApp(ui = ui, server = server)
+#' 
+#' @param u ui
+#' @param s server
 #' 
 #' @import shiny
 #' @import ggplot2
 #' 
 #' @export
+#' 
 
-selectInputMunicipality <- function(){
-  selectInput("m", "Select municipality", choices = get_municipalities())
+run_app <- function(u, s){
+  shinyApp(ui = u, server = s)
 }
 
 
@@ -18,7 +20,6 @@ ui <- fluidPage(
   titlePanel("Kolada"),
   sidebarLayout(
     sidebarPanel(
-      #selectInputMunicipality(),
       selectInput("m", "Select municipality", choices = NULL),
       selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
       selectInput("year", "Select year", choices = c(2018, 2019))
@@ -56,13 +57,9 @@ server <- function(input, output, session){
   })
 }
 
-selectInputMunicipality <- function(){
-  selectInput("m", "Select municipality", choices = get_municipalities())
-}
 
 
-# Run the application 
-shinyApp(ui = ui, server = server)
+
 
 
 
