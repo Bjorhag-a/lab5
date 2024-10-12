@@ -8,7 +8,7 @@
 #' @examples get_municipalities()
 #' 
 #' @import httr
-#' @import jsonlite
+#' @importFrom jsonlite fromJSON 
 #' 
 #' @export
 

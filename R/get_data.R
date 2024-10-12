@@ -10,7 +10,7 @@
 #' @examples get_data(kpi="N09890", municipality="Helsingborg", year="2019")
 #' 
 #' @import httr
-#' @import jsonlite
+#' @importFrom jsonlite fromJSON 
 #' 
 #' @export
 

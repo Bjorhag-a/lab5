@@ -10,9 +10,9 @@ License: GPL-3 + file LICENSE
 Depends: 
     R (>= 3.5.0),
     ggplot2,
+    shiny,
     jsonlite,
-    httr,
-    shiny
+    httr
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 Suggests:
