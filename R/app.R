@@ -1,21 +1,25 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    https://shiny.posit.co/
-#
+#' @title App 
+#' 
+#' @description yuppy
+#'   
+#' @examples shinyApp(ui = ui, server = server)
+#' 
+#' @import shiny
+#' @import ggplot2
+#' 
+#' @export
 
-library(shiny)
-library(ggplot2)
+selectInputMunicipality <- function(){
+  selectInput("m", "Select municipality", choices = get_municipalities())
+}
+
+
 ui <- fluidPage(
   titlePanel("Kolada"),
   sidebarLayout(
     sidebarPanel(
-      #TODO: fetch municipalities automatically from https://api.kolada.se/v2/municipality
-      # --> write new function for that
-      selectInput("m", "Select municipality", choices = c("Helsingborg", "Stockholm", "Lund")),
+      #selectInputMunicipality(),
+      selectInput("m", "Select municipality", choices = NULL),
       selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
       selectInput("year", "Select year", choices = c(2018, 2019))
     ),
@@ -25,7 +29,11 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output){
+server <- function(input, output, session){
+  
+  observe({
+    updateSelectInput(session, "m", choices = get_municipalities())
+  })
   
   d <- reactive({get_data(input$kpi, input$m, input$year)})
   
@@ -35,6 +43,7 @@ server <- function(input, output){
   # TODO dont make to many repetitive API calls
   # cache results
   # maybe try memoise function
+  
   
   output$plot <- renderPlot({
     ggplot(d(), aes(x = gender, y = value, fill=gender)) + 
@@ -47,10 +56,13 @@ server <- function(input, output){
   })
 }
 
+selectInputMunicipality <- function(){
+  selectInput("m", "Select municipality", choices = get_municipalities())
+}
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
 
 
 
