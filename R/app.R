@@ -80,5 +80,5 @@ server <- function(input, output, session){
     bindCache(d())
 }
 
-#app(ui, server)
+
 shinyApp(ui, server)
