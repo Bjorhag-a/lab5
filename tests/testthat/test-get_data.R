@@ -13,5 +13,8 @@ test_that("wrong input data types raise error", {
   expect_error(get_data("N09890", 1234, "2019"))
 })
 
+test_that("Function has correct output format", {
+  expect_true(is.data.frame(get_data("N09890", "Helsingborg", "2019")))
+})
 
 # No test for large API request as the function only fetches concrete results

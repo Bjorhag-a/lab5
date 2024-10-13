@@ -19,10 +19,6 @@
 #' @examples get_data("N09890", "Helsingborg", "2019")
 
 
-
-# TODO: specify, that we only display komuns for ONE group of KPIs
-
-
 get_data <- function(kpi, municipality, year){
   
   stopifnot(is.character(kpi), is.character(municipality), is.character(year))

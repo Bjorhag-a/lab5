@@ -45,7 +45,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session){
   # get kpis for later reference for 
-  kpi_group <- get_kpi_group("GKPI127")
+  kpi_group <- get_kpi_group("G2KPI166918")
   kpi_members <- rbind.data.frame(kpi_group$members)
 
   observe({
