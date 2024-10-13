@@ -1,7 +1,8 @@
 #' @title Get KPIs for the specific KPI gruop
 #' 
 #' @description 
-#' This function fetches all 
+#' This function fetches all KPIs for the specific KPI group you have selected
+#' and returns the data for the group ID
 #' 
 #' @param group_id id of the KPI group selected
 #' 
@@ -33,6 +34,4 @@ get_kpi_group <- function(group_id){
   #return (subset$values.title)
   return (df[df$id==group_id,])
 }
-
-
 
