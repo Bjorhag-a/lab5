@@ -19,6 +19,8 @@
 
 
 get_kpi_group <- function(group_id){
+  stopifnot(is.character(group_id))
+  
   res <- GET("http://api.kolada.se/v2/kpi_groups")
   
   # return error code, if API does not return 200

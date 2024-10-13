@@ -23,8 +23,6 @@
 #' # Fetch KPI data from the municipality  Helsingborg for the year 2019
 #' get_data("N09890", "Helsingborg", "2019")
 
-
-
 get_data <- function(kpi, municipality, year){
   
   stopifnot(is.character(kpi), is.character(municipality), is.character(year))
