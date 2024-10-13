@@ -1,3 +1,19 @@
+#' @title Download data from the Kolada API
+#' 
+#' @description
+#' test
+#' 
+#'
+#' @param kpi The specific question/query ID in the API
+#' @param municipality The municipality in the API
+#' @param year The year in the API
+#'
+#' @returns a data frame of the specific arguments you have selected in the function
+#' @export
+#'
+#' @examples get_data("N09890", "Helsingborg", 2019)
+
+
 library(httr)
 library(jsonlite)
 
@@ -46,6 +62,7 @@ get_data <- function(kpi, municipality, year){
   df <- rbind.data.frame(values)
   return(df)
 }
+
 
 d<-get_data("N09890", "Helsingborg", 2019)
 do.call(rbind.data.frame, d)
