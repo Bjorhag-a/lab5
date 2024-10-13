@@ -9,13 +9,16 @@
 #' @param year The year in the API
 #'
 #' @returns a data frame of the specific arguments you have selected in the function
+#' 
+#' @import httr
+#' @importFrom jsonlite fromJSON
+#' 
 #' @export
 #'
 #' @examples get_data("N09890", "Helsingborg", 2019)
 
 
-library(httr)
-library(jsonlite)
+
 
 get_municipalities <- function(){
   

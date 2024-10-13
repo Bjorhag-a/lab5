@@ -32,11 +32,11 @@ server <- function(input, output){
   
   d <- reactive({
     
-    if (is.data.frame(d())) {
-      return(d())
-    } else {
-      stop("No data for the selected inputs")
-    }
+    #if (is.data.frame(d())) {
+    #  return(d())
+    #} else {
+    #  stop("No data for the selected inputs")
+    #}
     
     get_data(input$kpi, input$m, input$year)}
     ) %>% 
@@ -55,8 +55,9 @@ server <- function(input, output){
   #--------------------------------------
   output$plot <- renderPlot({
     validate(
-      need(is.data.frame(d()), "The inputs have no data")
+      need(is.data.frame(d), "The inputs have no data")
     )
+    
     
     ggplot(d(), aes(x = gender, y = value, fill=gender)) + 
       geom_bar(stat = "identity") +
