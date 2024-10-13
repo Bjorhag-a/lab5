@@ -25,7 +25,7 @@ ui <- fluidPage(
     sidebarPanel(
       selectInput("m", "Select municipality", choices = NULL),
       selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
-      selectInput("year", "Select year", choices = c(2018, 2019))
+      selectInput("year", "Select year", choices = c("2018", "2019"))
     ),
     mainPanel(
       plotOutput("plot")
@@ -70,7 +70,7 @@ server <- function(input, output, session){
 
   output$plot <- renderPlot({
     validate(
-      need(is.data.frame(d), "The inputs have no data")
+      need(is.data.frame(d()), "The inputs have no data")
     )
     
     
@@ -88,7 +88,7 @@ server <- function(input, output, session){
 
 
 
-
+run_app(ui, server)
 
 
 

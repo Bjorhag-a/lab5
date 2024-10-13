@@ -16,7 +16,7 @@
 #' 
 #' @export
 #'
-#' @examples get_data("N09890", "Helsingborg", 2019)
+#' @examples get_data("N09890", "Helsingborg", "2019")
 
 
 

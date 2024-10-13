@@ -18,7 +18,7 @@ get_municipalities <- function(){
   
   # return error code, if API does not return 200
   if (res$status != 200){
-    return(m_id_res_status)
+    return(res$status)
   } 
   
   data <- fromJSON(rawToChar(res$content))

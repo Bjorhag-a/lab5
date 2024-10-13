@@ -29,14 +29,14 @@ library(ggplot2)
 
 ## etc
 ```{r data}
-get_data("N09890", "Helsingborg", 2019)
+get_data("N09890", "Helsingborg", "2019")
 
 ```
 
 
 ## Shiny app
 ```{r shiny}
-adddddddd shiny how we do it
+#adddddddd shiny how we do it
 ```
 
 

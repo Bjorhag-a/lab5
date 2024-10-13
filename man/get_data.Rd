@@ -2,24 +2,23 @@
 % Please edit documentation in R/get_data.R
 \name{get_data}
 \alias{get_data}
-\title{Get data}
+\title{Download data from the Kolada API}
 \usage{
 get_data(kpi, municipality, year)
 }
 \arguments{
-\item{kpi}{id of the kpi to fetch data for}
+\item{kpi}{The specific question/query ID in the API}
 
-\item{municipality}{name of the municipality to fetch data for}
+\item{municipality}{The municipality in the API}
 
-\item{year}{characters of the year to fetch data for}
+\item{year}{The year in the API}
 }
 \value{
-Will return a data frame with fetched data from API for given parameters
+a data frame of the specific arguments you have selected in the function
 }
 \description{
-yuppy
+test
 }
 \examples{
-get_data(kpi="N09890", municipality="Helsingborg", year="2019")
-
+get_data("N09890", "Helsingborg", "2019")
 }
