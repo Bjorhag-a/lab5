@@ -2,17 +2,20 @@
 % Please edit documentation in R/get_municipalities.R
 \name{get_municipalities}
 \alias{get_municipalities}
-\title{Get municipalities}
+\title{Get all municipalities from the Kolada API}
 \usage{
 get_municipalities()
 }
 \value{
-Will return a vector containing all municipalities that are a kommun
+Return a vector containing all municipalities that are categorized
+  as a kommun and extract the regions
 }
 \description{
-yuppy
+This function fetches all the municipalities from the Kolada API
+  and filter out the regions in the API
 }
 \examples{
+# Get a list of all municipalities (kommuner) from the Kolada API
 get_municipalities()
 
 }

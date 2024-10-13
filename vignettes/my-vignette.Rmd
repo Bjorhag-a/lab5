@@ -14,29 +14,48 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction 
-This guide will show you how to gather data from the Kolada API and use the Shiny app to help us interact/dispay the data. 
+# Introduction
 
-## Use package (Maybe delte this text xdddddddd)
-Need these packages in this guide.
+This guide will show you how to gather data from the Kolada API and use the Shiny app to help us interact/dispay the data for the KPI group "Öppna jämförelser Gymnasieskola" for swedish kommuner.
+
+## Load the package
+
 ```{r setup}
 library(lab5)
-library(shiny)
-library(ggplot2)
 ```
 
+## get_kpi_group function
 
+In this function we select a specific KPI group we want to explore. And under here we have selected the KPI group GKPI127 and printed out the first 5 ID:s and Titles of the group. The KPIs selected here is used in the Shiny app.
 
-## etc
-```{r data}
+```{r get_kpi_group}
+kpi_group <- get_kpi_group("GKPI127")
+kpi_members <- rbind.data.frame(kpi_group$members)
+kpi_members[1:5, ]
+
+```
+
+## get_municipalities function
+
+This function creates a data frame of all the municipalities in the KPI and filter out the regions that also is inside the KPI. This is used in the Shiny app UI and below there is the first 5 municipalities from the KPI.
+
+```{r get_municipalities}
+head(get_municipalities())
+
+```
+
+## get_data function
+
+This is an example of how get_data function works. The function fetches data from a specific KPI, municipality and year. So under here we get a data frame for the values divided by gender of the KPI data (N09890), municipality (Helsingborg) and the year (2019) selected.
+
+```{r get_data}
 get_data("N09890", "Helsingborg", "2019")
 
 ```
 
-
 ## Shiny app
-```{r shiny}
-#adddddddd shiny how we do it
+In the shiny app you can select a municipality, a KPI of the KPI group "Öppna jämförelser Gymnasieskola" and a year and the data will be shown as a bar plot, if available.
+
+```{r ,eval=FALSE}
+app()
 ```
-
-

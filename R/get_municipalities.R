@@ -1,11 +1,14 @@
-#' @title Get municipalities
+#' @title Get all municipalities from the Kolada API
 #' 
-#' @description yuppy
+#' @description This function fetches all the municipalities from the Kolada API
+#'   and filter out the regions in the API
 #' 
-#' 
-#' @returns Will return a vector containing all municipalities that are a kommun 
+#' @returns Return a vector containing all municipalities that are categorized
+#'   as a kommun and extract the regions
 #'   
-#' @examples get_municipalities()
+#' @examples 
+#' # Get a list of all municipalities (kommuner) from the Kolada API
+#' get_municipalities()
 #' 
 #' @import httr
 #' @importFrom jsonlite fromJSON 
