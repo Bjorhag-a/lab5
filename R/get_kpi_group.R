@@ -30,8 +30,6 @@ get_kpi_group <- function(group_id){
   df <- rbind.data.frame((data$values))
   
   # filter for kommun and leave out regions
-  #subset <- subset(df, values.type=="K")
-  #return (subset$values.title)
   return (df[df$id==group_id,])
 }
 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-This guide will show you how to gather data from the Kolada API and use the Shiny app to help us interact/dispay the data.
+This guide will show you how to gather data from the Kolada API and use the Shiny app to help us interact/dispay the data for the KPI group "Öppna jämförelser Gymnasieskola" for swedish kommuner.
 
 ## Load the package
 
@@ -54,6 +54,8 @@ get_data("N09890", "Helsingborg", "2019")
 ```
 
 ## Shiny app
+In the shiny app you can select a municipality, a KPI of the KPI group "Öppna jämförelser Gymnasieskola" and a year and the data will be shown as a bar plot, if available.
+
 ```{r ,eval=FALSE}
 app()
 ```

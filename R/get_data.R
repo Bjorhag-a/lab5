@@ -25,9 +25,6 @@
 
 
 
-# TODO: specify, that we only display komuns for ONE group of KPIs
-
-
 get_data <- function(kpi, municipality, year){
   
   stopifnot(is.character(kpi), is.character(municipality), is.character(year))
