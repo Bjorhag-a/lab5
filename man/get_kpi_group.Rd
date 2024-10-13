@@ -13,7 +13,8 @@ get_kpi_group(group_id)
 A data frame containing all KPIs for the specified KPI group
 }
 \description{
-This function fetches all
+This function fetches all KPIs for the specific KPI group you have selected
+and returns the data for the group ID
 }
 \examples{
 # Get all KPIs for the KPI group GKPI127
