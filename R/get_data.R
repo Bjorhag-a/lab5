@@ -1,3 +1,4 @@
+
 #' @title Download data from the Kolada API
 #' 
 #' @description
@@ -20,13 +21,11 @@
 
 
 
-get_municipalities <- function(){
-  
-}
+
 
 get_data <- function(kpi, municipality, year){
   
-  #TODO: check input
+  stopifnot(is.character(kpi), is.character(municipality), is.character(year))
   
   # get municipality id
   m_id_res <- GET("http://api.kolada.se/v2/municipality", query=list(title=municipality))
@@ -38,10 +37,8 @@ get_data <- function(kpi, municipality, year){
   } 
   
   m_id_data <- fromJSON(rawToChar(m_id_res$content))
-  print(m_id_res_status)
   # use paste for the case of multiple ids for a municipality
   m_id <- paste(m_id_data$values$id, collapse = ",")
-  print(m_id)
   
   
   
@@ -63,37 +60,9 @@ get_data <- function(kpi, municipality, year){
   
   # convert list to dataframe
   df <- rbind.data.frame(values)
-  return(df)
+  # return subset with important columns
+  return(df[c("gender", "value")])
 }
-
-
-d<-get_data("N09890", "Helsingborg", 2019)
-do.call(rbind.data.frame, d)
-rbind.data.frame(d)
-class(d)
-
-
-kpi <- "N09890"
-year <- "2019"
-m_id <- c("0180")
-paste(m_id, collapse = ",")
-url <- paste("http://api.kolada.se/v2/data/kpi/",kpi,"/municipality/",paste(m_id, collapse = ","),"/year/", year,sep = "")
-url
-res <- GET(url)
-
-data <- fromJSON(rawToChar(res$content))
-values <- data$values$values
-
-values
-
-
-
-
-
-
-
-#TODO in shiny: don't fetch data too often, cache the data somehow
-
 
 
 

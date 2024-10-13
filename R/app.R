@@ -1,24 +1,29 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    https://shiny.posit.co/
-#
 
-library(shiny)
-library(ggplot2)
-library(magrittr)
+#' @title run_app 
+#' 
+#' @description yuppy
+#' 
+#' @param u ui
+#' @param s server
+#' 
+#' @import shiny
+#' @import ggplot2
+#' @import magrittr
+#' 
+#' @export
+#' 
+
+run_app <- function(u, s){
+  shinyApp(ui = u, server = s)
+}
+
 
 
 ui <- fluidPage(
   titlePanel("Kolada"),
   sidebarLayout(
     sidebarPanel(
-      #TODO: fetch municipalities automatically from https://api.kolada.se/v2/municipality
-      # --> write new function for that
-      selectInput("m", "Select municipality", choices = c("Helsingborg", "Stockholm", "Lund")),
+      selectInput("m", "Select municipality", choices = NULL),
       selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
       selectInput("year", "Select year", choices = c(2018, 2019))
     ),
@@ -28,7 +33,11 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output){
+server <- function(input, output, session){
+  
+  observe({
+    updateSelectInput(session, "m", choices = get_municipalities())
+  })
   
   d <- reactive({
     
@@ -46,6 +55,7 @@ server <- function(input, output){
   # TODO check if a dataframe was returned or an error
   # print message to the user if error
   
+
   #---------------------------
   #COMMMMMMMMMENT FROM ALEXANDER
   #Have problem with the if statement because right now when i run the get_data function its a LIST 
@@ -53,6 +63,11 @@ server <- function(input, output){
   #Say that it must be a dataframe the graph says that its not a dataframe and cant print it out.....
   #So wait for you to see if you have changed the get_data function xddddddddddd
   #--------------------------------------
+
+  # TODO dont make to many repetitive API calls
+  # cache results
+  # maybe try memoise function
+
   output$plot <- renderPlot({
     validate(
       need(is.data.frame(d), "The inputs have no data")
@@ -71,8 +86,7 @@ server <- function(input, output){
 }
 
 
-# Run the application 
-shinyApp(ui = ui, server = server)
+
 
 
 

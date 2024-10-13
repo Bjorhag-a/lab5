@@ -2,15 +2,15 @@ Package: lab5
 Type: Package
 Title: Lab5
 Version: 1.0
-Date: 2024-10-08
+Date: 2024-09-23
 Author: Björhag, Alexander; Lindner, Jakob
 Maintainer: <alebj452@student.liu.se>, <jakli758@student.liu.se>
-Description: Assignment for lab 5 in Advanced R programming. This package downloads data from the Kolada API
+Description: Assignment for lab 5 in Advanced R programming.  
 License: GPL-3 + file LICENSE
 Depends: 
     R (>= 3.5.0),
     ggplot2,
-    methods,
+    shiny,
     httr,
     jsonlite,
     magrittr
