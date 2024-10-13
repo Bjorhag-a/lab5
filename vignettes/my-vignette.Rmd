@@ -1,0 +1,42 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction 
+This guide will show you how to gather data from the Kolada API and use the Shiny app to help us interact/dispay the data. 
+
+## Use package (Maybe delte this text xdddddddd)
+Need these packages in this guide.
+```{r setup}
+library(lab5)
+library(shiny)
+library(ggplot2)
+```
+
+
+
+## etc
+```{r data}
+get_data("N09890", "Helsingborg", "2019")
+
+```
+
+
+## Shiny app
+```{r shiny}
+#adddddddd shiny how we do it
+```
+
+
