@@ -20,7 +20,7 @@
 
 
 
-
+# TODO: specify, that we only display komuns for ONE group of KPIs
 
 
 get_data <- function(kpi, municipality, year){

@@ -18,14 +18,24 @@ run_app <- function(u, s){
 }
 
 
-
 ui <- fluidPage(
   titlePanel("Kolada"),
   sidebarLayout(
     sidebarPanel(
       selectInput("m", "Select municipality", choices = NULL),
-      selectInput("kpi", "Select KPI", choices = c("N09890", "N09891")),
-      selectInput("year", "Select year", choices = c("2018", "2019"))
+      selectInput("kpi", "Select KPI", choices = NULL),
+      selectInput("year", "Select year", choices = c(
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2015",
+        "2016",
+        "2017",
+        "2018", 
+        "2019"))
     ),
     mainPanel(
       plotOutput("plot")
@@ -34,9 +44,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session){
-  
+  # get kpis for later reference for 
+  kpi_group <- get_kpi_group("GKPI127")
+  kpi_members <- rbind.data.frame(kpi_group$members)
+
   observe({
     updateSelectInput(session, "m", choices = get_municipalities())
+    updateSelectInput(session, "kpi", choices = kpi_members$member_id)
   })
   
   d <- reactive({
@@ -49,6 +63,7 @@ server <- function(input, output, session){
     
     get_data(input$kpi, input$m, input$year)}
     ) %>% 
+    # cache the data to avoid repetitive API
     bindCache(input$kpi, input$m, input$year)
   
   
@@ -78,13 +93,12 @@ server <- function(input, output, session){
       geom_bar(stat = "identity") +
       
       # TODO: print name of KPI --> Select one KPI group 
-      labs(title = paste("Data for", input$m, "-", input$year, "-", input$kpi),
+      labs(title = paste("Data for", kpi_members$member_title[kpi_members$member_id==input$kpi]),
            x = "Gender", y = "Values") +
       theme_bw()
   }) %>% 
     bindCache(d())
 }
-
 
 
 
