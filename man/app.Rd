@@ -4,7 +4,12 @@
 \alias{app}
 \title{Run the Kolada KPI with Shiny app}
 \usage{
-app()
+app(ui, server)
+}
+\arguments{
+\item{ui}{shiny UI}
+
+\item{server}{shiny server}
 }
 \description{
 This function runs the Shiny app that allows us to display the data from 
