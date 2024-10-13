@@ -2,20 +2,21 @@
 % Please edit documentation in R/get_kpi_group.R
 \name{get_kpi_group}
 \alias{get_kpi_group}
-\title{Get KPI group}
+\title{Get KPIs for the specific KPI gruop}
 \usage{
 get_kpi_group(group_id)
 }
 \arguments{
-\item{group_id}{id of the kpi group}
+\item{group_id}{id of the KPI group selected}
 }
 \value{
-Will return a vector containing all kpis for a kpi group
+A data frame containing all KPIs for the specified KPI group
 }
 \description{
-yuppy
+This function fetches all
 }
 \examples{
+# Get all KPIs for the KPI group GKPI127
 get_kpi_group("GKPI127")
 
 }

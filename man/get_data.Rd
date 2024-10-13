@@ -14,11 +14,15 @@ get_data(kpi, municipality, year)
 \item{year}{The year in the API}
 }
 \value{
-a data frame of the specific arguments you have selected in the function
+a data frame of the specific arguments you have selected in the
+  function and if no data is available for the given parameters, it returns
+  `-1`.
 }
 \description{
-test
+This function retrieves data for a specific KPI for a given municipality and
+year from the Kolada API
 }
 \examples{
+# Fetch KPI data from the municipality  Helsingborg for the year 2019
 get_data("N09890", "Helsingborg", "2019")
 }

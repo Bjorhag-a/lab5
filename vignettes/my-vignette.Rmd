@@ -36,7 +36,7 @@ get_data("N09890", "Helsingborg", "2019")
 
 ## Shiny app
 ```{r shiny}
-#adddddddd shiny how we do it
+runGitHub("lab5", username = "Bjorhag-a", subdir = "R")
 ```
 
 

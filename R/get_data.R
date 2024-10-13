@@ -2,21 +2,26 @@
 #' @title Download data from the Kolada API
 #' 
 #' @description
-#' test
+#' This function retrieves data for a specific KPI for a given municipality and
+#' year from the Kolada API
 #' 
 #'
 #' @param kpi The specific question/query ID in the API
 #' @param municipality The municipality in the API
 #' @param year The year in the API
 #'
-#' @returns a data frame of the specific arguments you have selected in the function
+#' @returns a data frame of the specific arguments you have selected in the
+#'   function and if no data is available for the given parameters, it returns
+#'   `-1`.
 #' 
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #' 
 #' @export
 #'
-#' @examples get_data("N09890", "Helsingborg", "2019")
+#' @examples 
+#' # Fetch KPI data from the municipality  Helsingborg for the year 2019
+#' get_data("N09890", "Helsingborg", "2019")
 
 
 

@@ -1,12 +1,15 @@
-#' @title Get KPI group
+#' @title Get KPIs for the specific KPI gruop
 #' 
-#' @description yuppy
+#' @description 
+#' This function fetches all 
 #' 
-#' @param group_id id of the kpi group
+#' @param group_id id of the KPI group selected
 #' 
-#' @returns Will return a vector containing all kpis for a kpi group
+#' @returns A data frame containing all KPIs for the specified KPI group
 #'   
-#' @examples get_kpi_group("GKPI127")
+#' @examples 
+#' # Get all KPIs for the KPI group GKPI127
+#' get_kpi_group("GKPI127")
 #' 
 #' @import httr
 #' @importFrom jsonlite fromJSON 
@@ -30,4 +33,6 @@ get_kpi_group <- function(group_id){
   #return (subset$values.title)
   return (df[df$id==group_id,])
 }
+
+
 
