@@ -1,18 +1,26 @@
-#' @title Get data 
+
+#' @title Download data from the Kolada API
 #' 
-#' @description yuppy
-#' @param kpi id of the kpi to fetch data for
-#' @param municipality name of the municipality to fetch data for
-#' @param year characters of the year to fetch data for
+#' @description
+#' test
 #' 
-#' @returns Will return a data frame with fetched data from API for given parameters
-#'   
-#' @examples get_data(kpi="N09890", municipality="Helsingborg", year="2019")
+#'
+#' @param kpi The specific question/query ID in the API
+#' @param municipality The municipality in the API
+#' @param year The year in the API
+#'
+#' @returns a data frame of the specific arguments you have selected in the function
 #' 
 #' @import httr
-#' @importFrom jsonlite fromJSON 
+#' @importFrom jsonlite fromJSON
 #' 
 #' @export
+#'
+#' @examples get_data("N09890", "Helsingborg", 2019)
+
+
+
+
 
 
 get_data <- function(kpi, municipality, year){
@@ -56,9 +64,7 @@ get_data <- function(kpi, municipality, year){
   return(df[c("gender", "value")])
 }
 
-d<-get_data("N09890", "Helsingborg", "2019")
-d
-data.frame(gender=c("K", "M", "T"),value=c(10.272117, 6.348855, 8.248716))
+
 
 
 
