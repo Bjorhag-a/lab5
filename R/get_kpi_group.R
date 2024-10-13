@@ -33,4 +33,3 @@ get_kpi_group <- function(group_id){
   return (df[df$id==group_id,])
 }
 
-length(get_kpi_group("GKPI127")$members)
