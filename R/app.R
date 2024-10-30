@@ -65,7 +65,7 @@ server <- function(input, output, session){
   
   
   output$plot <- renderPlot({
-    validate(
+    shiny::validate(
       need(is.data.frame(d()), "The inputs have no data")
     )
     

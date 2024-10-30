@@ -63,4 +63,3 @@ get_data <- function(kpi, municipality, year){
   # return subset with important columns
   return(df[c("gender", "value")])
 }
-
